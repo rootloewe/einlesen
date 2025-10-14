@@ -10,6 +10,7 @@ from workersthread import WorkerThread
 from pathlib import Path
 
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -29,37 +30,32 @@ class MainWindow(QMainWindow):
 
         self.__createMenuBar()
 
-        #schreibe hier deinen Benutzernamen rein
-        if getpass.getuser() == "goli1" or getpass.getuser() == "armin":
-            self.label = QLabel("Hallo Ronny, ich importiere deine Rechnungen in Excel.", self)
-            self.label.setStyleSheet("font-size: 11pt;")
-            self.layout.addWidget(self.label)
-            self.layout.addSpacing(50)
-            self.label2 = QLabel("Bitte wähle deine PDF-Rechnungen aus.", self)
-            self.label2.setStyleSheet("font-size: 10pt;")
-            self.layout.addWidget(self.label2)
+        self.label = QLabel("Hallo, ich importiere deine Rechnungen in Excel.", self)
+        self.label.setStyleSheet("font-size: 11pt;")
+        self.layout.addWidget(self.label)
+        self.layout.addSpacing(50)
+        self.label2 = QLabel("Bitte wähle deine PDF-Rechnungen aus.", self)
+        self.label2.setStyleSheet("font-size: 10pt;")
+        self.layout.addWidget(self.label2)
 
-            self.layout.addSpacing(50)
-            self.open_pdf_button = QPushButton("PDF auswählen")
-            self.open_pdf_button.clicked.connect(self.open_pdf_dialog)
-            self.layout.addWidget(self.open_pdf_button)
+        # Button zum Öffnen des Datei-Dialogs
+        self.layout.addSpacing(50)
+        self.open_pdf_button = QPushButton("PDF auswählen")
+        self.open_pdf_button.clicked.connect(self.open_pdf_dialog)
+        self.layout.addWidget(self.open_pdf_button)
 
-            self.open_button = QPushButton("Öffnen", self)
-            self.open_button.clicked.connect(self.open_file)
-            self.open_button.hide()
-            self.layout.addWidget(self.open_button)
+        # Buttons für "Öffnen" und "Abbrechen" (zunächst verstecken)
+        self.open_button = QPushButton("Öffnen", self)
+        self.open_button.clicked.connect(self.open_file)
+        self.open_button.hide()
+        self.layout.addWidget(self.open_button)
 
-            self.cancel_button = QPushButton("Abbrechen", self)
-            self.cancel_button.clicked.connect(self.close)
-            self.cancel_button.hide()
-            self.layout.addWidget(self.cancel_button)
+        self.cancel_button = QPushButton("Abbrechen", self)
+        self.cancel_button.clicked.connect(self.close)
+        self.cancel_button.hide()
+        self.layout.addWidget(self.cancel_button)
 
-            self.pdf_files = []
-
-        else:
-            self.label = QLabel("Du bist nicht Ronny ;-(\n", self)
-            self.label.setStyleSheet("font-size: 12pt;")
-            self.layout.addWidget(self.label)
+        self.pdf_files = []
 
 
     def __createMenuBar(self):
@@ -93,15 +89,15 @@ class MainWindow(QMainWindow):
 
 
     def on_finished(self):
+        # Nach Abschluss des Hintergrundprozesses Buttons anzeigen und Text anpassen
         self.open_button.show()
         self.cancel_button.show()
         self.open_pdf_button.hide()
 
 
     def open_pdf_dialog(self):
-        #eigenen Standardsuchpfad wählen
-        pfad = r"/home/armin/projekte/Ronny"
-        #pfad = r"V:\Zugferd"
+        # pfad = Path(r"C:\Users\goli1\OneDrive\Desktop\Datanorm Sonepar")
+        pfad = r"V:\Zugferd Sonepar"
 
         if not Path(pfad).exists():
             pfad = ""
@@ -125,7 +121,7 @@ class MainWindow(QMainWindow):
     def open_file(self):
         dateipfad = pfad()
 
-        dateiname = str(dateipfad / "vorlage.xltx")
+        dateiname = str(dateipfad / "Überweisung Großhandel.xltx")
 
         if not os.path.exists(dateiname):
             self.label.setText(f"Datei nicht gefunden:\n{dateiname}")
@@ -161,17 +157,18 @@ class MainWindow(QMainWindow):
         )
 
         if ret == QMessageBox.StandardButton.Retry:
-            self.open_pdf_dialog()  
+            self.open_pdf_dialog()  # oder deine Methode, die neue Auswahl ermöglicht
         else:
             self.label2.setText("Verarbeitung abgebrochen.")
             QApplication.quit()
 
 
     def __ueber(self):
+        # Dialogfenster erzeugen, selbstständig aber modal (blockiert das Hauptfenster)
         about_dialog = QDialog(self)
         about_dialog.setWindowTitle("Über dieses Programm:")
         about_dialog.setFixedSize(300, 150)
-        about_dialog.setModal(True)  
+        about_dialog.setModal(True)  # Modal: blockiert Hauptfenster, bis geschlossen
 
         layout = QVBoxLayout()
 
@@ -179,7 +176,7 @@ class MainWindow(QMainWindow):
         label1.setStyleSheet("font-weight: bold; font-size: 12pt;")
         layout.addWidget(label1, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        label2 = QLabel("Erstellt von: Ingenieuruero_std")
+        label2 = QLabel("Erstellt von: Ingenieurüro Inh. Armin Herzner")
         layout.addWidget(label2, alignment=Qt.AlignmentFlag.AlignCenter)
 
 
@@ -188,9 +185,9 @@ class MainWindow(QMainWindow):
 
 
         close_button = QPushButton("Schließen")
-        close_button.clicked.connect(about_dialog.accept)  
+        close_button.clicked.connect(about_dialog.accept)  # Dialog schließt sich
         layout.addWidget(close_button, alignment=Qt.AlignmentFlag.AlignCenter)
 
         about_dialog.setLayout(layout)
-        about_dialog.exec() 
+        about_dialog.exec()  # Zeigt den Dialog modal an und wartet bis er geschlossen wirdpass
 
