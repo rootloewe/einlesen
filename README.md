@@ -12,9 +12,18 @@ Die Ausführbaren Dateien wurden mit nuitka erstellt und stehen zum Download ber
 Stelle sicher, dass Python 3 und alle Requirements installiert ist:
 pip install -r requirements.txt
 
+## Install
+Die einlesen.zip herunterladen und mit dem [wininstaller](https://github.com/rootloewe/wininstaller) installieren auf Windows.
+Für Debian-distries sudo apt-get install einlesen.deb
+Für SuSe- distries zyper install einlsen.rpm
+Alle anderen Disties gibts ein tar.gz zum Download
+
+## Hinweis
+Das Programm wurde speziell für Kundenanforderungen angepaßt, nicht garantiert, ob es auch für Ihre Zwecke dienlich ist. 
+Kann gerne auf Anfrage angepaßt werden.
 
 ## Download
-
+noch in bearbeitung
 | Windows                                                                                                                                  | MacOS                                                                                                                                        | Linux                                                                                                                                     |
 |------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | <img src="./logos/windows.png" width="100" alt="Windows">                                                                                | <img src="./logos/apple.png" width="90" alt="MacOS">                                                                                         | <img src="./logos/linux.png" width="100" alt="Linux">                                                                                     |
