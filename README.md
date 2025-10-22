@@ -12,10 +12,13 @@ Die Ausführbaren Dateien wurden mit nuitka erstellt und stehen zum Download ber
 Stelle sicher, dass Python 3 und alle Requirements installiert ist:
 pip install -r requirements.txt
 
-## Install
+## Windowns Install
 Die einlesen.zip herunterladen und mit dem [wininstaller](https://github.com/rootloewe/wininstaller) installieren auf Windows.
-Für Debian-distries sudo apt-get install einlesen.deb
-Für SuSe- distries zyper install einlsen.rpm
+
+## Debian
+mit rootrechten
+dpkg -i einlesen.deb oder
+apt-get install einlesen.deb
 Alle anderen Disties gibts ein tar.gz zum Download
 
 ## Hinweis
@@ -28,8 +31,22 @@ noch in bearbeitung
 |------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | <img src="./logos/windows.png" width="100" alt="Windows">                                                                                | <img src="./logos/apple.png" width="90" alt="MacOS">                                                                                         | <img src="./logos/linux.png" width="100" alt="Linux">                                                                                     |
 | [ZIP-Archiv](https://github.com/rootloewe/einlesen/releases/download/2.5.4/einlesen.zip)<br>(x86_64)                                     | [DMG-Archiv] not yet <br>(Intel)                                                                                                             | [deb-Installer](https://github.com/rootloewe/einlesen/releases/download/2.5.4/einlesen.deb)<br>(x86_64)                                   |
+|                                                                                                                                          |                                                                                                                                              | [rpm-Installer](https://github.com/rootloewe/einlesen/releases/download/2.5.4/einlesen-2.5.4-1.x86_64.rpm)<br>(x86_64)                    |
 |                                                                                                                                          |                                                                                                                                              | [TAR.GZ-Archiv](https://github.com/rootloewe/einlesen/releases/download/2.5.4/einlesen.tar.gz)<br>(x86_64)                                |
 
+## Arch Linux
+erst die Abhängigkeiten installieren:
+pacman -Syu qt6-base libxcb xcb-util xcb-util-wm xcb-util-image python-pyqt5 python-pyqt6-sip qt6-xcb-private-headers
+pacman -U einlesen-2.5.4.pkg.tar.zst
+
+## Suse
+mit rootrechten
+zypper install libgthread-2_0-0
+rpm -i einlesen-2.5.4-1.x86_64.rpm oder
+zypper install einlesen-2.5.4-1.x86_64.rpm
+
+Download GPG Schlüssel: 
+rpm --import RPM-GPG-KEY-einlesen.asc
 
 ## Lizenz
 GNU GENERAL PUBLIC LICENSE
